@@ -1,3 +1,3 @@
-Khái niệm CEPH là gì ?
+# 1.Khái niệm CEPH là gì ?
 Ceph (pronounced /ˈsɛf/) is an open-source software storage platform, implements object storage on a single distributed computer cluster, and provides 3-in-1 interfaces for object-, block- and file-level storage. Ceph aims primarily for completely distributed operation without a single point of failure, scalable to the exabyte level, and freely available.
 Ceph replicates data and makes it fault-tolerant,[7] using commodity hardware and requiring no specific hardware support. As a result of its design, the system is both self-healing and self-managing, aiming to minimize administration time and other costs.
