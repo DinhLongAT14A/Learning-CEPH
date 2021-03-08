@@ -47,3 +47,17 @@
      + Bảo vệ data, Ceph sẽ chịu trách nhiệm nhân bản, tái tạo data thay vì RAID, Ceph vượt trội so với RAID truyền thống, nhanh chóng khôi phục giảm tốn kém phần cứng
 Hiệu năng Ceph sẽ giảm xuống khi sử dụng RAID 5 6 vì tính chất random IO
 
+   # 1.2. CEPH MON - CEPH monitors
+   - Ceph monitor chịu trách nhiệm giám sát toàn cluster. Tiến trình này chạy trên toàn cluster, giám sát dựa trên thông tin storing critical cluster, state of peer nodes, and cluster configuration information. Ceph monitor thực hiện nhiệm vụ = cách duy trì master copy trên cluster. Cluster map bao gồm OSD, PG, CRUSH, MDS maps.
+   - Tất cả map được biết đến cluster map:
+     + Monitor map: Chứa thông tin về monitor node, bao gồm Ceph cluster IP, monitor hostname, and IP address và port number. Nó cũng lưu trữ map creation và thông tin thay đổi cuối cùng.
+     + OSD map: Lưu 1 số thông tin như cluster IP, sự tạo thành OSD map, thay đổi cuối cùng, 1 số thông tin khác như pool names, pool ID, type, replication level, và placement groups. Nó cũng lưu thông tin OSD như count, state, weight, last clean interval, and OSD host information.
+     + PG map: Thông tin về group version, time stamp, last OSD map epoch, full ratio ratio information. Các thông tin về group ID, object count, state, state stamp, up and acting OSD sets, and finally, the scrub details.
+     + CRUSH map: giữa thông tin về cluster's storage devices, failure domain hierarchy, rules defined for the failure domain when storing data.
+     + MDS map: Lưu thông tin về MDS map, map creation, modification timedata and metadata pool ID, cluster MDS count, và MDS state.
+Ceph monitor không lưu data và phục vụ user. Nó sẽ tập trung vào update cluster map tới client và cluster node. Client và cluster node kiểm tra theo chu kỳ.
+
+   - Tiến trình giám sát rất nhẹ, nó sẽ ko ảnh hướng tới tài nguyên có sẵn của server. Monitor node cần có đủ dung lượng đễ lưu trữ cluster log bao gồm OSD, MDS và monitor logs.
+   - Ceph cluster bao gồm nhiều hơn 1 monitor node. Kiến trúc Ceph được thiết kế quorum and provides consensus khi đưa ra quyết định phân tán cluster bằng thuật toán Paxos. Monitor count trong cluster là 1 số lẻ, tối thiểu 1 – 3. Trong tất cả các cluster monitor, sẽ có 1 hoạt động như leader. Phiên bản thương mại cần ít nhất 3 monitor node cho HA
+
+    Tùy thuộc vào túi tiền, tiến trình monitor có thể chạy trên cùng OSD node. Tuy nhiên sẽ cần nhiều CPU, RAM, disk cho việc lưu trữ log.
