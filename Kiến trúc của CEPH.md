@@ -63,7 +63,7 @@ Ceph monitor không lưu data và phục vụ user. Nó sẽ tập trung vào up
     Tùy thuộc vào túi tiền, tiến trình monitor có thể chạy trên cùng OSD node. Tuy nhiên sẽ cần nhiều CPU, RAM, disk cho việc lưu trữ log.
 
 # 2.Librados
-Là thư viện C, cho phép app làm việc với RADOS, bỏ qua 1 số interface layer để tương tác với Ceph cluster. Librados là thư viện cho RADOS, cung cấp nhiều API, ủy quyền app trực tiếp, truy cập song song tới clusters, with no HTTP overhead. App có thể mở rộng các giao thức = truy cập tơi RADOS. Thư viện hỗ trợ C++, Java, Python, Ruby, and PHP. librados serves as the base for other service interfaces that are built on top of the librados native interface, which includes the Ceph block device, Ceph filesystem, and Ceph RADOS gateway. librados cung cấp nhiều API subsets, efficiently storing key/value inside an object.
+Là thư viện C, cho phép app làm việc với RADOS, bỏ qua 1 số interface layer để tương tác với Ceph cluster. Librados là thư viện cho RADOS, cung cấp nhiều API, ủy quyền app trực tiếp, truy cập song song tới clusters, with no HTTP overhead. App có thể mở rộng các giao thức = truy cập tơi RADOS. Thư viện hỗ trợ C++, Java, Python, Ruby, and PHP. Librarydos đóng vai trò là cơ sở cho các giao diện dịch vụ khác được xây dựng trên nền của giao diện gốc của librarydos, bao gồm thiết bị khối Ceph, hệ thống tệp Ceph và cổng Ceph RADOS. Librarydos cung cấp nhiều tập hợp con API, lưu trữ hiệu quả khóa / giá trị bên trong một đối tượng.
 
     API supports atomic-single-object transaction by updating data, key, and attributes together. Interclient communication is supported via objects.
 
