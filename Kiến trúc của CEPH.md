@@ -61,3 +61,10 @@ Ceph monitor không lưu data và phục vụ user. Nó sẽ tập trung vào up
    - Ceph cluster bao gồm nhiều hơn 1 monitor node. Kiến trúc Ceph được thiết kế quorum and provides consensus khi đưa ra quyết định phân tán cluster bằng thuật toán Paxos. Monitor count trong cluster là 1 số lẻ, tối thiểu 1 – 3. Trong tất cả các cluster monitor, sẽ có 1 hoạt động như leader. Phiên bản thương mại cần ít nhất 3 monitor node cho HA
 
     Tùy thuộc vào túi tiền, tiến trình monitor có thể chạy trên cùng OSD node. Tuy nhiên sẽ cần nhiều CPU, RAM, disk cho việc lưu trữ log.
+
+# 2.Librados
+Là thư viện C, cho phép app làm việc với RADOS, bỏ qua 1 số interface layer để tương tác với Ceph cluster. Librados là thư viện cho RADOS, cung cấp nhiều API, ủy quyền app trực tiếp, truy cập song song tới clusters, with no HTTP overhead. App có thể mở rộng các giao thức = truy cập tơi RADOS. Thư viện hỗ trợ C++, Java, Python, Ruby, and PHP. librados serves as the base for other service interfaces that are built on top of the librados native interface, which includes the Ceph block device, Ceph filesystem, and Ceph RADOS gateway. librados cung cấp nhiều API subsets, efficiently storing key/value inside an object.
+
+    API supports atomic-single-object transaction by updating data, key, and attributes together. Interclient communication is supported via objects.
+
+Tương tác trực tiếp với RADOS cluster với librados library nâng cao performance, reliability, efficienc. Hỗ trợ cho Platform-as-a-Service và Software-as-a-Service cloud solutions
