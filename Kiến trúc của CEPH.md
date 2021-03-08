@@ -13,7 +13,7 @@
  
  Rados gồm 3 thành phần nhỏ chính là Ceph OSD , Ceph MON và Ceph MDS
  
-  ## 1.1. CEPH OSD - CEPH Object Storage Device
+  ### 1.1. CEPH OSD - CEPH Object Storage Device
    ### a. Khái niệm 
    - Một trong những thành phần quan trọng khi xây dựng blocks trong Ceph storage cluster. Nó lưu trữ data thực sự trên physical disk drives tại mỗi cluster node dạng obj. Phần lớn hoạt động bên trong Ceph Cluster được thực hiện bởi tiến trình Ceph OSD.
    - Ceph OSD lưu tất cả client data dạng obj, đáp ứng yêu cầu yêu cầu đến data được lưu trữ. Ceph cluster bao gồm nhiều OSD. Trên mỗi hoạt động đọc và ghi, client request tới cluster maps từ monitors, sau đó, họ sẽ tương tác với OSDs với hoạt động đọc ghi, không có sự can thiệp monitors. Điều này kiến tiến trình xử lý dữ liệu nhanh hơn khi ghi tới OSD, lưu trữ data trực tiếp mà không thông qua các lớp xử lý data khác. Cơ chế data-storage-and-retrieval mechanism gần như độc nhất khi so sánh ceph với các công cụ khác.
@@ -47,7 +47,7 @@
      + Bảo vệ data, Ceph sẽ chịu trách nhiệm nhân bản, tái tạo data thay vì RAID, Ceph vượt trội so với RAID truyền thống, nhanh chóng khôi phục giảm tốn kém phần cứng
 Hiệu năng Ceph sẽ giảm xuống khi sử dụng RAID 5 6 vì tính chất random IO
 
-   ## 1.2. CEPH MON - CEPH monitors
+   ### 1.2. CEPH MON - CEPH monitors
    - Ceph monitor chịu trách nhiệm giám sát toàn cluster. Tiến trình này chạy trên toàn cluster, giám sát dựa trên thông tin storing critical cluster, state of peer nodes, and cluster configuration information. Ceph monitor thực hiện nhiệm vụ = cách duy trì master copy trên cluster. Cluster map bao gồm OSD, PG, CRUSH, MDS maps.
    - Tất cả map được biết đến cluster map:
      + Monitor map: Chứa thông tin về monitor node, bao gồm Ceph cluster IP, monitor hostname, and IP address và port number. Nó cũng lưu trữ map creation và thông tin thay đổi cuối cùng.
@@ -62,7 +62,7 @@ Ceph monitor không lưu data và phục vụ user. Nó sẽ tập trung vào up
 
     Tùy thuộc vào túi tiền, tiến trình monitor có thể chạy trên cùng OSD node. Tuy nhiên sẽ cần nhiều CPU, RAM, disk cho việc lưu trữ log.
     
-   # 1.3. CEPH MDS
+   ### 1.3. CEPH MDS
    Ceph MDS tập trung vào Metadata Server và yêu cầu riêng cho CephFS, và 1 số storage methods block; object-based storage không yêu cầu MDS services. Ceph MDS hoạt động như 1 tiến trình, cho phép client mount POSIX file system với bất kỳ size. MDS không phục vụ data trực tiếp tới client; data được phục vụ bởi OSD. MDS cung cấp hệ thống chia sẽ tệp liên tục với smart caching layer. Vì thế giảm quá trình read write. MDS mở rộng lợi ích về chia nhỏ phân vùng, single MDS cho 1 phần metadata.
 
 MDS không lưu trữ local data, ít cần thiết trong 1 số kịch bản. Nếu tiến trình MDS lỗi, ta có thể chạy lại thông qua truy cập cluster. Tiến trình metadata server được cấu hình chủ động hoặc bị động. Node MDS chính sẽ trở thành active, phần còn lại sẽ chuyển sang chế độ chờ. Khi xảy ra lỗi primary MDS, node tiếp theo sẽ thay đổi trạng thái. Để nhanh chong khôi phục, ta có thể chỉ định node nào sẽ trở thành active node, đồng thời lưu trữ data giống nhau trong memory, chuẩn bị trước cho cache.
