@@ -11,7 +11,7 @@
  
  Khi nhìn vào kiến trúc Ceph, ta sẽ thầy nó gồm 2 phần, RADOS là tầng dưới, nằm trong Ceph cluster, không giao triếp trực tiếp với client, bên trên sẽ có client interface.
  
- Rados gồm 2 thành phần nhỏ chính là Ceph OSD và Ceph MON
+ Rados gồm 3 thành phần nhỏ chính là Ceph OSD , Ceph MON và Ceph MDS
  
   ## 1.1. CEPH OSD - CEPH Object Storage Device
    ### a. Khái niệm 
@@ -61,6 +61,11 @@ Ceph monitor không lưu data và phục vụ user. Nó sẽ tập trung vào up
    - Ceph cluster bao gồm nhiều hơn 1 monitor node. Kiến trúc Ceph được thiết kế quorum and provides consensus khi đưa ra quyết định phân tán cluster bằng thuật toán Paxos. Monitor count trong cluster là 1 số lẻ, tối thiểu 1 – 3. Trong tất cả các cluster monitor, sẽ có 1 hoạt động như leader. Phiên bản thương mại cần ít nhất 3 monitor node cho HA
 
     Tùy thuộc vào túi tiền, tiến trình monitor có thể chạy trên cùng OSD node. Tuy nhiên sẽ cần nhiều CPU, RAM, disk cho việc lưu trữ log.
+    
+   # 1.3. CEPH MDS
+   Ceph MDS tập trung vào Metadata Server và yêu cầu riêng cho CephFS, và 1 số storage methods block; object-based storage không yêu cầu MDS services. Ceph MDS hoạt động như 1 tiến trình, cho phép client mount POSIX file system với bất kỳ size. MDS không phục vụ data trực tiếp tới client; data được phục vụ bởi OSD. MDS cung cấp hệ thống chia sẽ tệp liên tục với smart caching layer. Vì thế giảm quá trình read write. MDS mở rộng lợi ích về chia nhỏ phân vùng, single MDS cho 1 phần metadata.
+
+MDS không lưu trữ local data, ít cần thiết trong 1 số kịch bản. Nếu tiến trình MDS lỗi, ta có thể chạy lại thông qua truy cập cluster. Tiến trình metadata server được cấu hình chủ động hoặc bị động. Node MDS chính sẽ trở thành active, phần còn lại sẽ chuyển sang chế độ chờ. Khi xảy ra lỗi primary MDS, node tiếp theo sẽ thay đổi trạng thái. Để nhanh chong khôi phục, ta có thể chỉ định node nào sẽ trở thành active node, đồng thời lưu trữ data giống nhau trong memory, chuẩn bị trước cho cache.
 
 # 2.Librados
 Là thư viện C, cho phép app làm việc với RADOS, bỏ qua 1 số interface layer để tương tác với Ceph cluster. Librados là thư viện cho RADOS, cung cấp nhiều API, ủy quyền app trực tiếp, truy cập song song tới clusters, with no HTTP overhead. App có thể mở rộng các giao thức = truy cập tơi RADOS. Thư viện hỗ trợ C++, Java, Python, Ruby, and PHP. Librarydos đóng vai trò là cơ sở cho các giao diện dịch vụ khác được xây dựng trên nền của giao diện gốc của librarydos, bao gồm thiết bị khối Ceph, hệ thống tệp Ceph và cổng Ceph RADOS. Librarydos cung cấp nhiều tập hợp con API, lưu trữ hiệu quả khóa / giá trị bên trong một đối tượng.
