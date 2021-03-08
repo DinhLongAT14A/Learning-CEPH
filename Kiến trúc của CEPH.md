@@ -1,4 +1,4 @@
-# 1. CEPH RADOS
+# 1.CEPH RADOS
  RADOS (Reliable Autonomic Distributed Object Store) là trung tâm của CEPH storage system, cũng được gọi là CEPH Storage Cluster.
  
  RADOS cung cấp rất nhiều tính năng quan trọng cho Ceph, bao gồm phân bố lưu trữ đối tượng, HA, bảo đảm, chịu lỗi, tự xử lý, tự giám sát. Vì vậy, RADOS layer cực kỳ quan trọng trong kiến trúc Ceph storage. Tất cả các phương thức truy cập vd: RBD, CephFS, RADOSGW, librados đều hoạt động trên RADOS layer.
