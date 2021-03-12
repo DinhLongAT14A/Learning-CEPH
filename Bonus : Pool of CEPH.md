@@ -72,7 +72,7 @@ a pool.::
 
         ceph osd pool application enable {pool-name} {application-name}
 
-.. note:: CephFS uses the application name ``cephfs``, RBD uses the
+Note:: CephFS uses the application name ``cephfs``, RBD uses the
    application name ``rbd``, and RGW uses the application name ``rgw``.
 
 # 5. Set Pool Quotas
@@ -161,7 +161,7 @@ To remove a snapshot of a pool, execute::
 
 	ceph osd pool rmsnap {pool-name} {snap-name}
 
-.. _setpoolvalues:
+
 
 
 # 11. Set Pool Values
@@ -306,7 +306,7 @@ To set the number of object replicas on a replicated pool, execute the following
 
 	ceph osd pool set {poolname} size {num-replicas}
 
-.. important:: The ``{num-replicas}`` includes the object itself.
+Note : important : The ``{num-replicas}`` includes the object itself.
    If you want the object and two copies of the object for a total of
    three instances of the object, specify ``3``.
 
@@ -317,7 +317,7 @@ For example::
 You may execute this command for each pool. **Note:** An object might accept
 I/Os in degraded mode with fewer than ``pool size`` replicas.  To set a minimum
 number of required replicas for I/O, you should use the ``min_size`` setting.
-For example::
+For example:
 
   ceph osd pool set data min_size 2
 
