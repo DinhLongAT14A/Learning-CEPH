@@ -1,4 +1,4 @@
-#1. Pools
+# 1. Pools
 - Pools are logical partitions for storing objects.
 - When you first deploy a cluster without creating a pool, Ceph uses the default pools for storing data. A pool provides you with:
    + Resilience ( Khả năng nhân rộng ): You can set how many OSD are allowed to fail without losing data. For replicated ( Nhân rộng ) pools, it is the desired (mong muốn) number of copies/replicas ( bản sao ) of an object. A typical ( Điển hỉnh ) configuration stores an object and one additional (bổ sung ) copy (i.e., size = 2), but you can determine ( mục đích) the number of copies/replicas. For erasure (xóa !?) coded pools, it is the number of coding chunks (miếng) (i.e. m=2 in the erasure code profile)
@@ -8,10 +8,11 @@
 - To organize data into pools, you can list, create, and remove pools. You can also view the utilization (sự sử dụng) statistics (số liệu thống kê) for each pool.
 
 
-#2. List Pools
+# 2. List Pools
+   
    To list your cluster's pools, execute: "ceph osd lspools"
 
-#3. Create a Pool
+# 3. Create a Pool
 - Before creating pools, refer (tham khảo) to the Pool, PG and CRUSH Config Reference ( Tham chiếu cấu hình) .Ideally (Lý tưởng) , you should override (ghi đè) the default value for the number of placement groups in your Ceph configuration file, as the default is NOT ideal. For details ( Để biết chi tiết ) on placement group numbers refer to (tham khảo tới) setting the number of placement groups
 *** note 
 Starting with Luminous, all pools need to be associated (liên kết) to the application (ứng dụng) using the pool. See Associate Pool (Nhóm liên kết) to Application below (dưới đây) for more information.
