@@ -24,3 +24,12 @@ For example:
      [crush-rule-name] [expected-num-objects]
   - ceph osd pool create {pool-name} [{pg-num} [{pgp-num}]]   erasure \
      [erasure-code-profile] [crush-rule-name] [expected_num_objects] [--autoscale-mode=<on,off,warn>]
+     
+Where:
+      {pool-name}     
+      
+      |Description|The name of the pool. It must be unique|
+      |Type       |String                                 |                              
+      |Required   |Yes                                    |
+      
+
