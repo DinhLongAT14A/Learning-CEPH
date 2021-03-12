@@ -36,9 +36,9 @@ Where:
   b. {pg-num}
   
   
-   |Description ( Sự miêu tả) |The total number of placement groups for the pool. See Placement Groups for details on calculating a suitable number. The default value 8 is NOT suitable for most systems|
+   |Description |The total number of placement groups for the pool. See Placement Groups for details on calculating a suitable number. The default value 8 is NOT suitable for most systems|
    |--------------------------|--------------------------------------------------|
    |Type                      |Interger                                           |                              
-   |Required ( Cần thiết)     |Yes                                               |
-   |Default  ( Mặc định )     |8                                               |
+   |Required      |Yes                                               |
+   |Default     |8                                               |
 
