@@ -177,354 +177,135 @@ You may set values for the following keys:
 
 ``compression_algorithm``
 
-:Description: Sets inline compression algorithm to use for underlying BlueStore. This setting overrides the `global setting <https://docs.ceph.com/en/latest/rados/configuration/bluestore-config-ref/#inline-compression>`__ of ``bluestore compression algorithm``.
-
-:Type: String
-:Valid Settings: ``lz4``, ``snappy``, ``zlib``, ``zstd``
-
 ``compression_mode``
-
-:Description: Sets the policy for the inline compression algorithm for underlying BlueStore. This setting overrides the `global setting <http://docs.ceph.com/en/latest/rados/configuration/bluestore-config-ref/#inline-compression>`__ of ``bluestore compression mode``.
-
-:Type: String
-:Valid Settings: ``none``, ``passive``, ``aggressive``, ``force``
 
 ``compression_min_blob_size``
 
-:Description: Chunks smaller than this are never compressed. This setting overrides the `global setting <http://docs.ceph.com/en/latest/rados/configuration/bluestore-config-ref/#inline-compression>`__ of ``bluestore compression min blob *``.
-
-:Type: Unsigned Integer
-
 ``compression_max_blob_size``
-
-:Description: Chunks larger than this are broken into smaller blobs sizing
-              ``compression_max_blob_size`` before being compressed.
-
-:Type: Unsigned Integer
 
 .. _size:
 
 ``size``
 
-:Description: Sets the number of replicas for objects in the pool.
-              See `Set the Number of Object Replicas`_ for further details.
-              Replicated pools only.
-
-:Type: Integer
-
 .. _min_size:
 
 ``min_size``
-
-:Description: Sets the minimum number of replicas required for I/O.
-              See `Set the Number of Object Replicas`_ for further details.
-              In the case of Erasure Coded pools this should be set to a value
-              greater than 'k' since if we allow IO at the value 'k' there is no
-              redundancy and data will be lost in the event of a permanent OSD
-              failure. For more information see `Erasure Code
-              <../erasure-code>`_
-
-:Type: Integer
-:Version: ``0.54`` and above
 
 .. _pg_num:
 
 ``pg_num``
 
-:Description: The effective number of placement groups to use when calculating
-              data placement.
-:Type: Integer
-:Valid Range: Superior to ``pg_num`` current value.
-
 .. _pgp_num:
 
 ``pgp_num``
-
-:Description: The effective number of placement groups for placement to use
-              when calculating data placement.
-
-:Type: Integer
-:Valid Range: Equal to or less than ``pg_num``.
 
 .. _crush_rule:
 
 ``crush_rule``
 
-:Description: The rule to use for mapping object placement in the cluster.
-:Type: String
-
 .. _allow_ec_overwrites:
 
 ``allow_ec_overwrites``
-
-:Description: Whether writes to an erasure coded pool can update part
-              of an object, so cephfs and rbd can use it. See
-              `Erasure Coding with Overwrites`_ for more details.
-:Type: Boolean
-:Version: ``12.2.0`` and above
 
 .. _hashpspool:
 
 ``hashpspool``
 
-:Description: Set/Unset HASHPSPOOL flag on a given pool.
-:Type: Integer
-:Valid Range: 1 sets flag, 0 unsets flag
-
 .. _nodelete:
 
 ``nodelete``
-
-:Description: Set/Unset NODELETE flag on a given pool.
-:Type: Integer
-:Valid Range: 1 sets flag, 0 unsets flag
-:Version: Version ``FIXME``
 
 .. _nopgchange:
 
 ``nopgchange``
 
-:Description: Set/Unset NOPGCHANGE flag on a given pool.
-:Type: Integer
-:Valid Range: 1 sets flag, 0 unsets flag
-:Version: Version ``FIXME``
-
 .. _nosizechange:
 
 ``nosizechange``
-
-:Description: Set/Unset NOSIZECHANGE flag on a given pool.
-:Type: Integer
-:Valid Range: 1 sets flag, 0 unsets flag
-:Version: Version ``FIXME``
 
 .. _write_fadvise_dontneed:
 
 ``write_fadvise_dontneed``
 
-:Description: Set/Unset WRITE_FADVISE_DONTNEED flag on a given pool.
-:Type: Integer
-:Valid Range: 1 sets flag, 0 unsets flag
-
 .. _noscrub:
 
 ``noscrub``
-
-:Description: Set/Unset NOSCRUB flag on a given pool.
-:Type: Integer
-:Valid Range: 1 sets flag, 0 unsets flag
 
 .. _nodeep-scrub:
 
 ``nodeep-scrub``
 
-:Description: Set/Unset NODEEP_SCRUB flag on a given pool.
-:Type: Integer
-:Valid Range: 1 sets flag, 0 unsets flag
-
 .. _hit_set_type:
 
 ``hit_set_type``
-
-:Description: Enables hit set tracking for cache pools.
-              See `Bloom Filter`_ for additional information.
-
-:Type: String
-:Valid Settings: ``bloom``, ``explicit_hash``, ``explicit_object``
-:Default: ``bloom``. Other values are for testing.
 
 .. _hit_set_count:
 
 ``hit_set_count``
 
-:Description: The number of hit sets to store for cache pools. The higher
-              the number, the more RAM consumed by the ``ceph-osd`` daemon.
-
-:Type: Integer
-:Valid Range: ``1``. Agent doesn't handle > 1 yet.
-
 .. _hit_set_period:
 
 ``hit_set_period``
-
-:Description: The duration of a hit set period in seconds for cache pools.
-              The higher the number, the more RAM consumed by the
-              ``ceph-osd`` daemon.
-
-:Type: Integer
-:Example: ``3600`` 1hr
 
 .. _hit_set_fpp:
 
 ``hit_set_fpp``
 
-:Description: The false positive probability for the ``bloom`` hit set type.
-              See `Bloom Filter`_ for additional information.
-
-:Type: Double
-:Valid Range: 0.0 - 1.0
-:Default: ``0.05``
-
 .. _cache_target_dirty_ratio:
 
 ``cache_target_dirty_ratio``
-
-:Description: The percentage of the cache pool containing modified (dirty)
-              objects before the cache tiering agent will flush them to the
-              backing storage pool.
-
-:Type: Double
-:Default: ``.4``
 
 .. _cache_target_dirty_high_ratio:
 
 ``cache_target_dirty_high_ratio``
 
-:Description: The percentage of the cache pool containing modified (dirty)
-              objects before the cache tiering agent will flush them to the
-              backing storage pool with a higher speed.
-
-:Type: Double
-:Default: ``.6``
-
 .. _cache_target_full_ratio:
 
 ``cache_target_full_ratio``
-
-:Description: The percentage of the cache pool containing unmodified (clean)
-              objects before the cache tiering agent will evict them from the
-              cache pool.
-
-:Type: Double
-:Default: ``.8``
 
 .. _target_max_bytes:
 
 ``target_max_bytes``
 
-:Description: Ceph will begin flushing or evicting objects when the
-              ``max_bytes`` threshold is triggered.
-
-:Type: Integer
-:Example: ``1000000000000``  #1-TB
-
 .. _target_max_objects:
 
 ``target_max_objects``
 
-:Description: Ceph will begin flushing or evicting objects when the
-              ``max_objects`` threshold is triggered.
-
-:Type: Integer
-:Example: ``1000000`` #1M objects
-
-
 ``hit_set_grade_decay_rate``
 
-:Description: Temperature decay rate between two successive hit_sets
-:Type: Integer
-:Valid Range: 0 - 100
-:Default: ``20``
-
-
 ``hit_set_search_last_n``
-
-:Description: Count at most N appearance in hit_sets for temperature calculation
-:Type: Integer
-:Valid Range: 0 - hit_set_count
-:Default: ``1``
-
 
 .. _cache_min_flush_age:
 
 ``cache_min_flush_age``
 
-:Description: The time (in seconds) before the cache tiering agent will flush
-              an object from the cache pool to the storage pool.
-
-:Type: Integer
-:Example: ``600`` 10min
-
 .. _cache_min_evict_age:
 
 ``cache_min_evict_age``
-
-:Description: The time (in seconds) before the cache tiering agent will evict
-              an object from the cache pool.
-
-:Type: Integer
-:Example: ``1800`` 30min
 
 .. _fast_read:
 
 ``fast_read``
 
-:Description: On Erasure Coding pool, if this flag is turned on, the read request
-              would issue sub reads to all shards, and waits until it receives enough
-              shards to decode to serve the client. In the case of jerasure and isa
-              erasure plugins, once the first K replies return, client's request is
-              served immediately using the data decoded from these replies. This
-              helps to tradeoff some resources for better performance. Currently this
-              flag is only supported for Erasure Coding pool.
-
-:Type: Boolean
-:Defaults: ``0``
-
 .. _scrub_min_interval:
 
 ``scrub_min_interval``
-
-:Description: The minimum interval in seconds for pool scrubbing when
-              load is low. If it is 0, the value osd_scrub_min_interval
-              from config is used.
-
-:Type: Double
-:Default: ``0``
 
 .. _scrub_max_interval:
 
 ``scrub_max_interval``
 
-:Description: The maximum interval in seconds for pool scrubbing
-              irrespective of cluster load. If it is 0, the value
-              osd_scrub_max_interval from config is used.
-
-:Type: Double
-:Default: ``0``
-
 .. _deep_scrub_interval:
 
 ``deep_scrub_interval``
-
-:Description: The interval in seconds for pool “deep” scrubbing. If it
-              is 0, the value osd_deep_scrub_interval from config is used.
-
-:Type: Double
-:Default: ``0``
-
 
 .. _recovery_priority:
 
 ``recovery_priority``
 
-:Description: When a value is set it will increase or decrease the computed
-              reservation priority. This value must be in the range -10 to
-              10.  Use a negative priority for less important pools so they
-              have lower priority than any new pools.
-
-:Type: Integer
-:Default: ``0``
-
-
 .. _recovery_op_priority:
 
 ``recovery_op_priority``
-
-:Description: Specify the recovery operation priority for this pool instead of ``osd_recovery_op_priority``.
-
-:Type: Integer
-:Default: ``0``
-
 
 Get Pool Values
 ===============
@@ -537,162 +318,49 @@ You may get values for the following keys:
 
 ``size``
 
-:Description: see size_
-
-:Type: Integer
-
 ``min_size``
-
-:Description: see min_size_
-
-:Type: Integer
-:Version: ``0.54`` and above
 
 ``pg_num``
 
-:Description: see pg_num_
-
-:Type: Integer
-
-
 ``pgp_num``
-
-:Description: see pgp_num_
-
-:Type: Integer
-:Valid Range: Equal to or less than ``pg_num``.
-
 
 ``crush_rule``
 
-:Description: see crush_rule_
-
-
 ``hit_set_type``
-
-:Description: see hit_set_type_
-
-:Type: String
-:Valid Settings: ``bloom``, ``explicit_hash``, ``explicit_object``
 
 ``hit_set_count``
 
-:Description: see hit_set_count_
-
-:Type: Integer
-
-
 ``hit_set_period``
-
-:Description: see hit_set_period_
-
-:Type: Integer
-
 
 ``hit_set_fpp``
 
-:Description: see hit_set_fpp_
-
-:Type: Double
-
-
 ``cache_target_dirty_ratio``
-
-:Description: see cache_target_dirty_ratio_
-
-:Type: Double
-
 
 ``cache_target_dirty_high_ratio``
 
-:Description: see cache_target_dirty_high_ratio_
-
-:Type: Double
-
-
 ``cache_target_full_ratio``
-
-:Description: see cache_target_full_ratio_
-
-:Type: Double
-
 
 ``target_max_bytes``
 
-:Description: see target_max_bytes_
-
-:Type: Integer
-
-
 ``target_max_objects``
-
-:Description: see target_max_objects_
-
-:Type: Integer
-
 
 ``cache_min_flush_age``
 
-:Description: see cache_min_flush_age_
-
-:Type: Integer
-
-
 ``cache_min_evict_age``
-
-:Description: see cache_min_evict_age_
-
-:Type: Integer
-
 
 ``fast_read``
 
-:Description: see fast_read_
-
-:Type: Boolean
-
-
 ``scrub_min_interval``
-
-:Description: see scrub_min_interval_
-
-:Type: Double
-
 
 ``scrub_max_interval``
 
-:Description: see scrub_max_interval_
-
-:Type: Double
-
-
 ``deep_scrub_interval``
-
-:Description: see deep_scrub_interval_
-
-:Type: Double
-
 
 ``allow_ec_overwrites``
 
-:Description: see allow_ec_overwrites_
-
-:Type: Boolean
-
-
 ``recovery_priority``
 
-:Description: see recovery_priority_
-
-:Type: Integer
-
-
 ``recovery_op_priority``
-
-:Description: see recovery_op_priority_
-
-:Type: Integer
-
 
 Set the Number of Object Replicas
 =================================
