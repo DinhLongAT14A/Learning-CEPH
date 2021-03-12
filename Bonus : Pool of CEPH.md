@@ -58,7 +58,7 @@ If you set the autoscale mode to ``on`` or ``warn``, you can let the system auto
 
 
 
-Associate Pool to Application
+# 4.Associate Pool to Application
 =============================
 
 Pools need to be associated with an application before use. Pools that will be
@@ -124,7 +124,7 @@ exists, you should consider deleting those users too::
 	ceph auth del {user}
 
 
-Rename a Pool
+# 5.Rename a Pool
 =============
 
 To rename a pool, execute::
@@ -135,7 +135,7 @@ If you rename a pool and you have per-pool capabilities for an authenticated
 user, you must update the user's capabilities (i.e., caps) with the new pool
 name.
 
-Show Pool Statistics
+# 6.Show Pool Statistics
 ====================
 
 To show a pool's utilization statistics, execute::
@@ -147,14 +147,14 @@ Additionally, to obtain I/O information for a specific pool or all, execute::
         ceph osd pool stats [{pool-name}]
 
 
-Make a Snapshot of a Pool
+# 7.Make a Snapshot of a Pool
 =========================
 
 To make a snapshot of a pool, execute::
 
 	ceph osd pool mksnap {pool-name} {snap-name}
 
-Remove a Snapshot of a Pool
+# 8.Remove a Snapshot of a Pool
 ===========================
 
 To remove a snapshot of a pool, execute::
@@ -164,7 +164,7 @@ To remove a snapshot of a pool, execute::
 .. _setpoolvalues:
 
 
-Set Pool Values
+# 9.Set Pool Values
 ===============
 
 To set a value to a pool, execute the following::
@@ -172,8 +172,6 @@ To set a value to a pool, execute the following::
 	ceph osd pool set {pool-name} {key} {value}
 
 You may set values for the following keys:
-
-.. _compression_algorithm:
 
 ``compression_algorithm``
 
@@ -183,91 +181,47 @@ You may set values for the following keys:
 
 ``compression_max_blob_size``
 
-.. _size:
-
 ``size``
-
-.. _min_size:
 
 ``min_size``
 
-.. _pg_num:
-
 ``pg_num``
-
-.. _pgp_num:
 
 ``pgp_num``
 
-.. _crush_rule:
-
 ``crush_rule``
-
-.. _allow_ec_overwrites:
 
 ``allow_ec_overwrites``
 
-.. _hashpspool:
-
 ``hashpspool``
-
-.. _nodelete:
 
 ``nodelete``
 
-.. _nopgchange:
-
 ``nopgchange``
-
-.. _nosizechange:
 
 ``nosizechange``
 
-.. _write_fadvise_dontneed:
-
 ``write_fadvise_dontneed``
-
-.. _noscrub:
 
 ``noscrub``
 
-.. _nodeep-scrub:
-
 ``nodeep-scrub``
-
-.. _hit_set_type:
 
 ``hit_set_type``
 
-.. _hit_set_count:
-
 ``hit_set_count``
-
-.. _hit_set_period:
 
 ``hit_set_period``
 
-.. _hit_set_fpp:
-
 ``hit_set_fpp``
-
-.. _cache_target_dirty_ratio:
 
 ``cache_target_dirty_ratio``
 
-.. _cache_target_dirty_high_ratio:
-
 ``cache_target_dirty_high_ratio``
-
-.. _cache_target_full_ratio:
 
 ``cache_target_full_ratio``
 
-.. _target_max_bytes:
-
 ``target_max_bytes``
-
-.. _target_max_objects:
 
 ``target_max_objects``
 
@@ -275,39 +229,23 @@ You may set values for the following keys:
 
 ``hit_set_search_last_n``
 
-.. _cache_min_flush_age:
-
 ``cache_min_flush_age``
-
-.. _cache_min_evict_age:
 
 ``cache_min_evict_age``
 
-.. _fast_read:
-
 ``fast_read``
-
-.. _scrub_min_interval:
 
 ``scrub_min_interval``
 
-.. _scrub_max_interval:
-
 ``scrub_max_interval``
-
-.. _deep_scrub_interval:
 
 ``deep_scrub_interval``
 
-.. _recovery_priority:
-
 ``recovery_priority``
-
-.. _recovery_op_priority:
 
 ``recovery_op_priority``
 
-Get Pool Values
+# 10.Get Pool Values
 ===============
 
 To get a value from a pool, execute the following::
@@ -362,8 +300,8 @@ You may get values for the following keys:
 
 ``recovery_op_priority``
 
-Set the Number of Object Replicas
-=================================
+# 11.Set the Number of Object Replicas
+  =================================
 
 To set the number of object replicas on a replicated pool, execute the following::
 
@@ -388,8 +326,8 @@ This ensures that no object in the data pool will receive I/O with fewer than
 ``min_size`` replicas.
 
 
-Get the Number of Object Replicas
-=================================
+# 12. Get the Number of Object Replicas
+  =================================
 
 To get the number of object replicas, execute the following::
 
@@ -401,9 +339,5 @@ a size of 3).
 
 
 
-.. _Pool, PG and CRUSH Config Reference: ../../configuration/pool-pg-config-ref
-.. _Bloom Filter: https://en.wikipedia.org/wiki/Bloom_filter
-.. _setting the number of placement groups: ../placement-groups#set-the-number-of-placement-groups
-.. _Erasure Coding with Overwrites: ../erasure-code#erasure-coding-with-overwrites
-.. _Block Device Commands: ../../../rbd/rados-rbd-cmds/#create-a-block-device-pool
+
 
