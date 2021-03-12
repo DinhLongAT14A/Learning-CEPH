@@ -43,61 +43,23 @@ Where:
 
 ``{pgp-num}``
 
-:Description: The total number of placement groups for placement purposes. This
-              **should be equal to the total number of placement groups**, except
-              for placement group splitting scenarios.
 
-:Type: Integer
-:Required: Yes. Picks up default or Ceph configuration value if not specified.
-:Default: 8
 
 ``{replicated|erasure}``
 
-:Description: The pool type which may either be **replicated** to
-              recover from lost OSDs by keeping multiple copies of the
-              objects or **erasure** to get a kind of
-              `generalized RAID5 <../erasure-code>`_ capability.
-              The **replicated** pools require more
-              raw storage but implement all Ceph operations. The
-              **erasure** pools require less raw storage but only
-              implement a subset of the available operations.
 
-:Type: String
-:Required: No.
-:Default: replicated
 
 ``[crush-rule-name]``
 
-:Description: The name of a CRUSH rule to use for this pool.  The specified
-              rule must exist.
 
-:Type: String
-:Required: No.
-:Default: For **replicated** pools it is the rule specified by the ``osd
-          pool default crush rule`` config variable.  This rule must exist.
-          For **erasure** pools it is ``erasure-code`` if the ``default``
-          `erasure code profile`_ is used or ``{pool-name}`` otherwise.  This
-          rule will be created implicitly if it doesn't exist already.
 
 
 ``[erasure-code-profile=profile]``
 
-.. _erasure code profile: ../erasure-code-profile
 
-:Description: For **erasure** pools only. Use the `erasure code profile`_. It
-              must be an existing profile as defined by
-              **osd erasure-code-profile set**.
-
-:Type: String
-:Required: No.
 
 ``--autoscale-mode=<on,off,warn>``
 
-:Description: Autoscale mode
-
-:Type: String
-:Required: No.
-:Default:  The default behavior is controlled by the ``osd pool default pg autoscale mode`` option.
 
 If you set the autoscale mode to ``on`` or ``warn``, you can let the system autotune or recommend changes to the number of placement groups in your pool based on actual usage.  If you leave it off, then you should refer to `Placement Groups`_ for more information.
 
@@ -105,14 +67,6 @@ If you set the autoscale mode to ``on`` or ``warn``, you can let the system auto
 
 ``[expected-num-objects]``
 
-:Description: The expected number of objects for this pool. By setting this value (
-              together with a negative **filestore merge threshold**), the PG folder
-              splitting would happen at the pool creation time, to avoid the latency
-              impact to do a runtime folder splitting.
-
-:Type: Integer
-:Required: No.
-:Default: 0, no splitting at the pool creation time.
 
 .. _associate-pool-to-application:
 
