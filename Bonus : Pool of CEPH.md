@@ -28,8 +28,10 @@ For example:
 Where:
       {pool-name}     
       
-      |Description|The name of the pool. It must be unique|
-      |Type       |String                                 |                              
-      |Required   |Yes                                    |
+   
+   |Description|The name of the pool. It must be unique|
+   |-----------|---------------------------------------|
+   |Type       |String                                 |                              
+   |Required   |Yes                                    |
       
 
