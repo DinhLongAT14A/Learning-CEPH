@@ -20,7 +20,7 @@ For example:
     + osd pool default pg num = 100  ( pg !? )
     + osd pool default pgp num = 100 ( pgp !?)
 - To create a pool, execute (thực hành):
-ceph osd pool create {pool-name} [{pg-num} [{pgp-num}]] [replicated] \
+  - ceph osd pool create {pool-name} [{pg-num} [{pgp-num}]] [replicated] \
      [crush-rule-name] [expected-num-objects]
-ceph osd pool create {pool-name} [{pg-num} [{pgp-num}]]   erasure \
+  - ceph osd pool create {pool-name} [{pg-num} [{pgp-num}]]   erasure \
      [erasure-code-profile] [crush-rule-name] [expected_num_objects] [--autoscale-mode=<on,off,warn>]
