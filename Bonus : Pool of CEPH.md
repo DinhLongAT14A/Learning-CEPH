@@ -26,12 +26,19 @@ For example:
      [erasure-code-profile] [crush-rule-name] [expected_num_objects] [--autoscale-mode=<on,off,warn>]
      
 Where:
-      {pool-name}     
-      
+   a. {pool-name}     
    
-   |Description|The name of the pool. It must be unique|
-   |-----------|---------------------------------------|
-   |Type       |String                                 |                              
-   |Required   |Yes                                    |
+   |Description ( Sự miêu tả) |The name of the pool. It must be unique (duy nhất)|
+   |--------------------------|--------------------------------------------------|
+   |Type                      |String                                            |                              
+   |Required ( Cần thiết)     |Yes                                               |
       
+  b. {pg-num}
+  
+  
+   |Description ( Sự miêu tả) |The total number of placement groups for the pool. See Placement Groups for details on calculating a suitable number. The default value 8 is NOT suitable for most systems|
+   |--------------------------|--------------------------------------------------|
+   |Type                      |Interger                                           |                              
+   |Required ( Cần thiết)     |Yes                                               |
+   |Default  ( Mặc định )     |8                                               |
 
