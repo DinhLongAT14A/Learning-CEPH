@@ -93,7 +93,7 @@ To remove a quota, set its value to ``0``.
 # 6. Delete a Pool
 
 
-To delete a pool, execute::
+To delete a pool, execute:
 
 	ceph osd pool delete {pool-name} [{pool-name} --yes-i-really-really-mean-it]
 
@@ -103,7 +103,7 @@ configuration. Otherwise they will refuse to remove a pool.
 
 See `Monitor Configuration`_ for more information.
 
-.. _Monitor Configuration: ../../configuration/mon-config-ref
+
 
 If you created your own rules for a pool you created, you should consider
 removing them when you no longer need your pool::
