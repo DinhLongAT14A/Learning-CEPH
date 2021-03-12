@@ -36,10 +36,11 @@ Where:
       
 ``{pg-num}``
 
-   |Description  |Tổng số nhóm của pool. Xem Placement Groups để biết chi tiết về cách tính một con số phù hợp. Giá trị mặc định 8 KHÔNG phù hợp với hầu hết các hệ thống. |
-   |-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-   |Type         |String                                                                                                                                                   |        |Required     |Yes                                                                                                                                                      |
-   |Defualt      | 8                                                                                                                                                       |
+   |Description  |Tổng số nhóm của pool .Giá trị mặc định 8 KHÔNG phù hợp với hầu hết các hệ thống. |
+   |-------------|----------------------------------------------------------------------------------|
+   |Type         |String                                                                            |
+   |Required     |Yes                                                                               |
+   |Defualt      |8                                                                                                                                                        
 
 ``{pgp-num}``
 
@@ -319,7 +320,7 @@ I/Os in degraded mode with fewer than ``pool size`` replicas.  To set a minimum
 number of required replicas for I/O, you should use the ``min_size`` setting.
 For example:
 
-  ceph osd pool set data min_size 2
+    ceph osd pool set data min_size 2
 
 This ensures that no object in the data pool will receive I/O with fewer than
 ``min_size`` replicas.
