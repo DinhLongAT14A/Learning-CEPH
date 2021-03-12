@@ -59,7 +59,7 @@ If you set the autoscale mode to ``on`` or ``warn``, you can let the system auto
 
 
 # 4.Associate Pool to Application
-=============================
+
 
 Pools need to be associated with an application before use. Pools that will be
 used with CephFS or pools that are automatically created by RGW are
@@ -75,7 +75,7 @@ a pool.::
 .. note:: CephFS uses the application name ``cephfs``, RBD uses the
    application name ``rbd``, and RGW uses the application name ``rgw``.
 
-Set Pool Quotas
+# 5. Set Pool Quotas
 ===============
 
 You can set pool quotas for the maximum number of bytes and/or the maximum
@@ -90,7 +90,7 @@ For example::
 To remove a quota, set its value to ``0``.
 
 
-Delete a Pool
+# 6.Delete a Pool
 =============
 
 To delete a pool, execute::
@@ -124,7 +124,7 @@ exists, you should consider deleting those users too::
 	ceph auth del {user}
 
 
-# 5.Rename a Pool
+# 7.Rename a Pool
 =============
 
 To rename a pool, execute::
@@ -135,7 +135,7 @@ If you rename a pool and you have per-pool capabilities for an authenticated
 user, you must update the user's capabilities (i.e., caps) with the new pool
 name.
 
-# 6.Show Pool Statistics
+# 8.Show Pool Statistics
 ====================
 
 To show a pool's utilization statistics, execute::
@@ -147,14 +147,14 @@ Additionally, to obtain I/O information for a specific pool or all, execute::
         ceph osd pool stats [{pool-name}]
 
 
-# 7.Make a Snapshot of a Pool
+# 9.Make a Snapshot of a Pool
 =========================
 
 To make a snapshot of a pool, execute::
 
 	ceph osd pool mksnap {pool-name} {snap-name}
 
-# 8.Remove a Snapshot of a Pool
+# 10.Remove a Snapshot of a Pool
 ===========================
 
 To remove a snapshot of a pool, execute::
@@ -164,7 +164,7 @@ To remove a snapshot of a pool, execute::
 .. _setpoolvalues:
 
 
-# 9.Set Pool Values
+# 11.Set Pool Values
 ===============
 
 To set a value to a pool, execute the following::
@@ -245,7 +245,7 @@ You may set values for the following keys:
 
 ``recovery_op_priority``
 
-# 10.Get Pool Values
+# 12.Get Pool Values
 ===============
 
 To get a value from a pool, execute the following::
@@ -300,7 +300,7 @@ You may get values for the following keys:
 
 ``recovery_op_priority``
 
-# 11.Set the Number of Object Replicas
+# 13.Set the Number of Object Replicas
   =================================
 
 To set the number of object replicas on a replicated pool, execute the following::
@@ -326,7 +326,7 @@ This ensures that no object in the data pool will receive I/O with fewer than
 ``min_size`` replicas.
 
 
-# 12. Get the Number of Object Replicas
+# 14. Get the Number of Object Replicas
   =================================
 
 To get the number of object replicas, execute the following::
