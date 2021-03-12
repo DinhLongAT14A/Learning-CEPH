@@ -39,36 +39,24 @@ Where:
    |Description  |Tổng số nhóm của pool. Xem Placement Groups để biết chi tiết về cách tính một con số phù hợp. Giá trị mặc định 8 KHÔNG phù hợp với hầu hết các hệ thống. |
    |-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
    |Type         |String                                                                                                                                                   |        |Required     |Yes                                                                                                                                                      |
-   | Defualt     | 8                                                                                                                                                       |
+   |Defualt      | 8                                                                                                                                                       |
 
 ``{pgp-num}``
 
-
-
 ``{replicated|erasure}``
 
-
-
-``[crush-rule-name]``
-
-
-
+``crush-rule-name]``
 
 ``[erasure-code-profile=profile]``
-
-
 
 ``--autoscale-mode=<on,off,warn>``
 
 
 If you set the autoscale mode to ``on`` or ``warn``, you can let the system autotune or recommend changes to the number of placement groups in your pool based on actual usage.  If you leave it off, then you should refer to `Placement Groups`_ for more information.
 
-.. _Placement Groups: ../placement-groups
-
 ``[expected-num-objects]``
 
 
-.. _associate-pool-to-application:
 
 Associate Pool to Application
 =============================
