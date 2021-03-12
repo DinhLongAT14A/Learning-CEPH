@@ -27,7 +27,7 @@ For example:
      
 Where:
 
-   + a. {pool-name}     
+   ``{pool-name}``     
    
    |Description ( Sự miêu tả) |The name of the pool. It must be unique (duy nhất)|
    |--------------------------|--------------------------------------------------|
@@ -36,13 +36,10 @@ Where:
       
 ``{pg-num}``
 
-:Description: The total number of placement groups for the pool. See `Placement
-              Groups`_  for details on calculating a suitable number. The
-              default value ``8`` is NOT suitable for most systems.
-
-:Type: Integer
-:Required: Yes.
-:Default: 8
+   |Description  |Tổng số nhóm của pool. Xem Placement Groups để biết chi tiết về cách tính một con số phù hợp. Giá trị mặc định 8 KHÔNG phù hợp với hầu hết các hệ thống. |
+   |-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |Type         |String                                                                                                                                                   |        |Required     |Yes                                                                                                                                                      |
+   | Defualt     | 8                                                                                                                                                       |
 
 ``{pgp-num}``
 
